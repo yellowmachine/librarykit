@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from '$app/stores';
+  import { page } from '$app/state';
   import { trpc } from '$lib/trpc/client';
 
   let greeting = 'press the button to load data';
@@ -7,12 +7,12 @@
 
   const loadData = async () => {
     loading = true;
-    greeting = await trpc($page).greeting.query();
+    greeting = await trpc(page).greeting.query();
     loading = false;
   };
 </script>
 
-<h6>Loading data in<br /><code>+page.svelte</code></h6>
+<h6 class="">Loading data in<br /><code>+page.svelte</code></h6>
 
 <a
   href="#load"
@@ -23,4 +23,4 @@
 >
 <p>{greeting}</p>
 
-<a href="/barcode" role="button" class="secondary">Go to barcode scanner</a>
+<a class="underline" href="/barcode" role="button">Go to barcode scanner</a>

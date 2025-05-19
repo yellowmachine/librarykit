@@ -1,12 +1,10 @@
 import type { Handle } from '@sveltejs/kit';
 import { paraglideMiddleware } from '$lib/paraglide/server';
 import { sequence } from '@sveltejs/kit/hooks';
-//import { startListening } from '$lib/mpdListener';
-//import { initializeDB } from '$lib/db';
 import { createTRPCHandle } from 'trpc-sveltekit';
 import { createContext } from '$lib/trpc/context';
 import { router } from '$lib/trpc/router';
-//import { appRouter } from '$lib/trpc/router';
+
 
 const trpcHandle: Handle = createTRPCHandle({ router, createContext });
 
@@ -25,9 +23,7 @@ async function initializeServer() {
   console.log("Inicializando el servidor...");
 
   try{
-    //await initializeDB(); 
-    // Inicializar la escucha de eventos MPD
-    //await startListening();
+    
     console.log("Servidor inicializado.");
   }catch(e){
     console.error(e);
