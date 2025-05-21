@@ -1,7 +1,9 @@
 <script lang="ts">
-	import '../app.css';
+  import { trpc } from '$lib/trpc/client';
 
-	let { children } = $props();
+	const { data, children } = $props();
+
+  trpc.hydrateFromServer(() => data.trpc);
 </script>
 
-{@render children()}
+{@render children?.()}

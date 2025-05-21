@@ -61,9 +61,11 @@
 	},
 	"dependencies": {
 		"@prisma/client": "^6.8.2",
+		"@tanstack/svelte-query": "^5.76.0",
 		"@trpc/client": "^10.45.2",
 		"@trpc/server": "^10.45.2",
 		"html5-qrcode": "^2.3.8",
+		"trpc-svelte-query": "^3.0.3",
 		"trpc-sveltekit": "^3.6.3",
 		"zod": "^3.25.1"
 	},
