@@ -1,7 +1,6 @@
 import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose';
 
-/*
-class Author {
+class Authorx {
   @prop({ required: true })
   name!: string;
 }
@@ -11,11 +10,10 @@ export class Book {
   title!: string;
 
   @prop({ required: true, _id: false })
-  author!: Author;
+  author!: Authorx;
 }
 
 export const BookModel = getModelForClass(Book);
-*/
 
 // Subtipos auxiliares
 class Publisher {
