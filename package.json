@@ -17,10 +17,9 @@
 		"test:e2e": "playwright test",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"prisma:generate": "prisma generate",
-		"prisma:migrate": "prisma migrate dev",
-		"prisma:studio": "prisma studio",
-		"postinstall": "prisma generate"
+		"prisma:generate": "npx prisma generate",
+		"prisma:migrate": "npx prisma migrate dev",
+		"prisma:studio": "npx prisma studio"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
