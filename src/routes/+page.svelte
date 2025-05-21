@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { trpc } from '$lib/trpc/client';
-
-  const query = trpc.greeting.query({ name: 'tRPC' });
+  import { trpc } from "$lib/trpc";
+  const query = trpc.greeting.query();
+  
 </script>
 
-{#if $query.isSuccess}
-  <p>{$query.data.greeting}</p>
-{:else if $query.isError}
-  <p>{$query.error.message}</p>
+{#if $query?.isSuccess}
+  <p>{$query.data}</p>
+{:else if $query?.isError}
+  <p>Error: {$query.error.message}</p>
 {:else}
   <p>Loading...</p>
 {/if}
