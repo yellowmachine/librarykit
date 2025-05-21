@@ -63,9 +63,7 @@
 		"@prisma/client": "^6.8.2",
 		"@trpc/client": "^10.45.2",
 		"@trpc/server": "^10.45.2",
-		"@typegoose/typegoose": "^12.16.0",
 		"html5-qrcode": "^2.3.8",
-		"mongoose": "^8.15.0",
 		"trpc-sveltekit": "^3.6.3",
 		"zod": "^3.25.1"
 	},
