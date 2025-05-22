@@ -1,21 +1,32 @@
+
 version: '3.8'
-
 services:
-  mongodb:
-    image: mongo:8.0
-    container_name: mongodb
-    restart: always
+  code-server:
+    container_name: code-serverv1
+    build:
+      context: .
+      args:
+        BASE: ${BASE}
+        VERSION: ${VERSION}
+        DISTRO: ${DISTRO}
+        GIT_USER_NAME: ${GIT_USER_NAME}
+        GIT_USER_EMAIL: ${GIT_USER_EMAIL}
     ports:
-      - "27017:27017"
+      - 8080:8080
+      - 3000:3000
+      - 5173:5173
+      - 4173:4173
+      - 6006:6006
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
+      - GIT_USER_NAME=${GIT_USER_NAME}
+      - GIT_USER_EMAIL=${GIT_USER_EMAIL}
     volumes:
-      - mongo-data:/data/db
-      - mongo-config:/data/configdb
-
+      - ./:/home/coder/project
+      - code-server-config:/home/coder/.config
+      - ssh-keys:/home/coder/.ssh
 volumes:
-  mongo-data:
-    driver: local
-  mongo-config:
-    driver: local
+  #code-data:
+  code-server-config:
+    external: true
+  ssh-keys:
+    external: true
