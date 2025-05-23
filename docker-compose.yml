@@ -12,7 +12,7 @@ services:
         GIT_USER_NAME: ${GIT_USER_NAME}
         GIT_USER_EMAIL: ${GIT_USER_EMAIL}
     ports:
-      - 8080:8080
+      - 8088:8080
       - 3000:3000
       - 5173:5173
       - 4173:4173
@@ -21,11 +21,10 @@ services:
       - GIT_USER_NAME=${GIT_USER_NAME}
       - GIT_USER_EMAIL=${GIT_USER_EMAIL}
     volumes:
-      - ./:/home/coder/project
-      - code-server-config:/home/coder/.config
-      - ssh-keys:/home/coder/.ssh
+      - ./:/home/node/project
+      - code-server-config:/home/node/.local/share/code-server/extensions/
+      - ssh-keys:/home/node/.ssh
 volumes:
-  #code-data:
   code-server-config:
     external: true
   ssh-keys:

@@ -3,6 +3,12 @@
 
   import Book from '$lib/components/Book.svelte';
 
+  const exampleBook = {
+    title: 'Pride and Prejudice',
+    author: 'Jane Austen',
+    // ...otros campos que uses
+  };
+
   const { Story } = defineMeta({
     title: 'Library/Book',
     component: Book,
@@ -15,4 +21,4 @@
   });
 </script>
 
-<Story name="Primary" args={{ primary: true }} />
+<Story name="Primary" args={{ book: exampleBook }} />

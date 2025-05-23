@@ -1,12 +1,6 @@
-ARG BASE
-ARG VERSION
-ARG DISTRO
-FROM ${BASE}:${VERSION}-${DISTRO}
+FROM node:18-bullseye-slim
 
-ARG GIT_USER_NAME
-ARG GIT_USER_EMAIL
-
-# Instalación de dependencias del sistema
+# Instala solo las dependencias necesarias
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     curl \
@@ -32,28 +26,23 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
     apt-get install -y gh && \
     rm -rf /var/lib/apt/lists/*
 
-# Crea usuario y carpetas
-RUN useradd -m coder && \
-    mkdir -p /home/coder/project /home/coder/.config /home/coder/.ssh && \
-    chown -R coder:coder /home/coder/
+# Crea directorios necesarios para code-server y tu proyecto
+RUN mkdir -p /home/node/project /home/node/.local/share/code-server/extensions /home/node/.ssh
 
-RUN chsh -s /bin/zsh coder
+# Cambia el shell solo si realmente lo necesitas
+# RUN chsh -s /bin/zsh node
 
-# Instala Node.js solo si no existe
-RUN if ! command -v npm; then \
-      curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-      apt-get update && apt-get install -y nodejs && \
-      rm -rf /var/lib/apt/lists/*; \
-    fi
+USER node
+WORKDIR /home/node/project
 
-USER coder
-WORKDIR /home/coder/project
+ENV HOME=/home/node
+ENV NODE_ENV=development
 
-ENV HOME=/home/coder
-RUN mkdir -p /home/coder/.npm-global && \
-    npm config set prefix '/home/coder/.npm-global' && \
-    echo 'export PATH=/home/coder/.npm-global/bin:$PATH' >> /home/coder/.bashrc && \
-    echo 'export PATH=/home/coder/.npm-global/bin:$PATH' >> /home/coder/.zshrc
+# Configuración npm global
+RUN mkdir -p /home/node/.npm-global && \
+    npm config set prefix '/home/node/.npm-global' && \
+    echo 'export PATH=/home/node/.npm-global/bin:$PATH' >> /home/node/.bashrc && \
+    echo 'export PATH=/home/node/.npm-global/bin:$PATH' >> /home/node/.zshrc
 
 ENV PATH="$HOME/.npm-global/bin:${PATH}"
 
@@ -62,4 +51,4 @@ RUN git config --global user.email "${GIT_USER_EMAIL}" && \
 
 EXPOSE 8080
 
-CMD ["code-server", "--bind-addr", "0.0.0.0:8080", "--auth", "none", "/home/coder/project"]
+CMD ["code-server", "--bind-addr", "0.0.0.0:8080", "--auth", "none", "/home/node/project"]
