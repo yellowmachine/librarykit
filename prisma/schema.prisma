@@ -18,4 +18,7 @@ model Book {
   id String @id @default(uuid())
   title  String
   author Json
-}
+  publishDate String?
+  coverUrl String?
+  description String?
+} 

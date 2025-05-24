@@ -1,11 +1,5 @@
 <script lang="ts">
-  //import type { Book } from '@prisma/client';
-
-  interface Book {
-    title: string;
-    author: string;
-    // ...otros campos
-  }
+  import type { Book } from '@prisma/client';
 
   const {book} = $props<{ book: Book }>();
 
