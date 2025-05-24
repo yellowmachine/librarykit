@@ -19,7 +19,8 @@
 		"build-storybook": "storybook build",
 		"prisma:generate": "npx prisma generate",
 		"prisma:migrate": "npx prisma migrate dev",
-		"prisma:studio": "npx prisma studio"
+		"prisma:studio": "npx prisma studio",
+		"clean-cache": "rm -rf .svelte-kit node_modules/.vite"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
@@ -60,12 +61,12 @@
 		"vitest": "^3.0.0"
 	},
 	"dependencies": {
-		"@inlang/paraglide-js": "^2.0.0",
 		"@prisma/client": "^6.8.2",
-		"@trpc/client": "^10.45.2",
-		"@trpc/server": "^10.45.2",
+		"@tanstack/svelte-query": "^5.76.0",
+		"@trpc/client": "^11.1.2",
+		"@trpc/server": "^11.1.2",
 		"html5-qrcode": "^2.3.8",
-		"trpc-sveltekit": "^3.6.3",
+		"trpc-svelte-query": "^3.0.3",
 		"zod": "^3.25.1"
 	},
 	"pnpm": {

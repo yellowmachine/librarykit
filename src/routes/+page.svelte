@@ -1,26 +1,17 @@
 <script lang="ts">
-  import { page } from '$app/state';
-  import { trpc } from '$lib/trpc/client';
-
-  let greeting = 'press the button to load data';
-  let loading = false;
-
-  const loadData = async () => {
-    loading = true;
-    greeting = await trpc(page).greeting.query();
-    loading = false;
-  };
+  //import { trpc } from "$lib/trpc";
+  //const query = trpc.greeting.query();
+  
 </script>
 
-<h6 class="">Loading data in<br /><code>+page.svelte</code></h6>
+<!--
+{#if $query?.isSuccess}
+  <p>{$query.data}</p>
+{:else if $query?.isError}
+  <p>Error: {$query.error.message}</p>
+{:else}
+  <p>Loading...</p>
+{/if}
+-->
 
-<a
-  href="#load"
-  role="button"
-  class="secondary"
-  aria-busy={loading}
-  on:click|preventDefault={loadData}>Load</a
->
-<p>{greeting}</p>
-
-<a class="underline" href="/barcode" role="button">Go to barcode scanner</a>
+<a class="mt-4 block underline text-center text-blue-600" href="/scan">Scan</a>

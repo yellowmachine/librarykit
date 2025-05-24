@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Html5Qrcode, type Html5QrcodeResult } from 'html5-qrcode'
     import { onMount } from 'svelte'
+    import { goto } from '$app/navigation';
 
     let scanning = false
 
@@ -30,9 +31,11 @@
         scanning = false
     }
 
-    function onScanSuccess(decodedText: string, decodedResult: Html5QrcodeResult) {
-        alert(`Code matched = ${decodedText}`)
+    async function onScanSuccess(decodedText: string, decodedResult: Html5QrcodeResult) {
+        //alert(`Code matched = ${decodedText}`)
         console.log(decodedResult)
+        await stop();
+        goto(`/book/${decodedText}/view`);
     }
 
     function onScanFailure(error: string) {

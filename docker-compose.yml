@@ -1,0 +1,31 @@
+
+version: '3.8'
+services:
+  code-server:
+    container_name: code-serverv1
+    build:
+      context: .
+      args:
+        BASE: ${BASE}
+        VERSION: ${VERSION}
+        DISTRO: ${DISTRO}
+        GIT_USER_NAME: ${GIT_USER_NAME}
+        GIT_USER_EMAIL: ${GIT_USER_EMAIL}
+    ports:
+      - 8088:8080
+      - 3000:3000
+      - 5173:5173
+      - 4173:4173
+      - 6006:6006
+    environment:
+      - GIT_USER_NAME=${GIT_USER_NAME}
+      - GIT_USER_EMAIL=${GIT_USER_EMAIL}
+    volumes:
+      - ./:/home/node/project
+      - code-server-config:/home/node/.local/share/code-server/extensions/
+      - ssh-keys:/home/node/.ssh
+volumes:
+  code-server-config:
+    external: true
+  ssh-keys:
+    external: true

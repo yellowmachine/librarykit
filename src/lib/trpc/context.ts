@@ -1,9 +1,12 @@
+//import { BookModel } from '$lib/models/book';
 import type { RequestEvent } from '@sveltejs/kit';
-
+//import { connectDB } from '$lib/db';
 
 export async function createContext(event: RequestEvent) {
+  //await connectDB(); 
   return {
-    event, // 👈 `event` is now available in your context,
+    event,
+    //Book: BookModel,
   };
 }
 
