@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type { Booka } from '$generated/prisma';
+	import type { Book } from '$generated/prisma';
 
 	const { book } = $props<{ book: Book }>();
 
-	// Haz una copia local editable
 	let editableBook = { ...book };
 </script>
 
