@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { trpc } from '$lib/trpc';
+  import { trpc } from "src/lib/trpc";
 
 	const { data, children } = $props();
 

@@ -1,17 +1,15 @@
 <script lang="ts">
-	import Book from "$lib/components/Book.svelte";
+	import Book from '$lib/components/Book.svelte';
 
   const { data } = $props();
-  const { code, book } = data;
+  const { code, books } = data;
   
 </script>
 
 <h2>Vista para ISBN: {code}</h2>
-{#if book}
+{#each books as book(book.id)}
   <Book book={book} />
-{:else}
-  <p>No se encontró información para este ISBN.</p>
-{/if}
+{/each}
 
 <a class="mt-4 block underline text-center text-blue-600" href="/book/{code}/edit">Edit</a>
 <a class="mt-4 block underline text-center text-blue-600" href="/scan">Scan</a>

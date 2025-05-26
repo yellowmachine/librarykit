@@ -3,7 +3,7 @@
   import BookCard from './BookCard.svelte';
 
 	const { book } = $props<{
-		book: Book;
+		book: Omit<Book, 'id'>;
 	}>();
 </script>
 

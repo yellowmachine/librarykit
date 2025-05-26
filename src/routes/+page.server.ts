@@ -1,5 +1,6 @@
 import { trpcServer } from "../lib/server/server";
+import type { LayoutServerLoad } from './$types';
 
-export const load = async () => {
-	await trpcServer.greeting.ssr({ name: 'tRPC' });
+export const load: LayoutServerLoad = async () => {
+	await trpcServer.greeting.ssr();
 };
