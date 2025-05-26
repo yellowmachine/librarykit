@@ -14,4 +14,4 @@
 {/if}
 -->
 
-<a class="mt-4 block underline text-center text-blue-600" href="/scan">Scan</a>
+<a class="mt-4 block underline text-center text-blue-600" href="/googlebook/scan">Scan</a>

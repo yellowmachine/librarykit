@@ -35,7 +35,7 @@
         //alert(`Code matched = ${decodedText}`)
         console.log(decodedResult)
         await stop();
-        goto(`/book/${decodedText}/view`);
+        goto(`/googlebook/search?code=${decodedText}`);
     }
 
     function onScanFailure(error: string) {
