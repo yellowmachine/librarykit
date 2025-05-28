@@ -1,16 +1,21 @@
 
 <script lang="ts">
+	import Grid from '$lib/components/Grid.svelte';
 	import PreviewBook from '$lib/components/PreviewBook.svelte';
   import { mapGoogleBookToPrismaBook } from '@src/services/bookService.js';
-  
+	import type { GoogleBooksVolume } from '@src/types/googleBook.js';
+
   const { data } = $props();
   const { code, books } = data;
   
 </script>
 
-<h2>Vista para ISBN: {code}</h2>
-{#each books as book(book.id)}
-  <PreviewBook book={mapGoogleBookToPrismaBook(book)} />
-{/each}
+{#snippet Preview(book: GoogleBooksVolume)}
+    <PreviewBook book={mapGoogleBookToPrismaBook(book)} />
+{/snippet}
 
-<a class="mt-4 block underline text-center text-blue-600" href="/scan">Scan</a>
+<h2>Vista para ISBN: {code}</h2>
+ 
+<Grid items={books} View={Preview} />
+
+<a class="mt-4 block underline text-center text-blue-600" href="/scan">Scan again</a>

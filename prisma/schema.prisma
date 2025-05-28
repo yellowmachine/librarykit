@@ -17,8 +17,12 @@ datasource db {
 model Book {
   id String @id @default(uuid())
   title  String
-  author Json
+  authors String[]
   publishDate String?
   coverUrl String?
   description String?
+  pageCount Int?
+  categories String[]
+  publisher String?
+  language String?
 } 

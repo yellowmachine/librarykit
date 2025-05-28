@@ -9,6 +9,9 @@ export interface GoogleBooksVolume {
     publisher?: string;
     publishedDate?: string;
     description?: string;
+    pageCount: number;
+    categories: string[];
+    language: string;
     imageLinks?: {
       smallThumbnail?: string;
       thumbnail?: string;
