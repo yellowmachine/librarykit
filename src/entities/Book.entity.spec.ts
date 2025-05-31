@@ -1,7 +1,8 @@
-import { describe, it, beforeAll, afterAll, expect } from 'vitest';
+import { describe, it, beforeAll, afterAll, expect, beforeEach } from 'vitest';
 import { MikroORM } from '@mikro-orm/core';
-import config from '../../mikro-orm.config.test';
-import { Book } from '../Book.entity';
+import { Book } from './Book.entity';
+import config from '../mikro-orm.test.config';
+
 
 let orm: MikroORM;
 
@@ -9,6 +10,10 @@ beforeAll(async () => {
   orm = await MikroORM.init(config);
   await orm.getSchemaGenerator().dropSchema();
   await orm.getSchemaGenerator().createSchema();
+});
+
+beforeEach(async () => {
+  await orm.schema.clearDatabase(); // Limpia todas las tablas, pero no borra el esquema
 });
 
 afterAll(async () => {

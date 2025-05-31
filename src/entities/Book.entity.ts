@@ -14,3 +14,4 @@ export class Book {
   @Property()
   price!: number;
 }
+
