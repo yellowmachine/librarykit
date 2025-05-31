@@ -31,20 +31,32 @@ export class Book {
   authors!: string[];
 
   @Property({type: 'text'})
-  description?: string;
+  description?: string | null = null;;
 
   @Property()
-  coverUrl: string | null = null;
+  coverUrl?: string | null = null;
+
+  @Property()
+  language?: string | null = null;
+
+  @Property()
+  pageCount?: number | null = null;
+
+  @Property()
+  categories?: string[] | null = null;
   
   @Property()
-  publisher: string | null = null;
+  publisher?: string | null = null;
   
   @Property()
-  published: Date | null = null;
+  publishDate?: Date | null = null;
 
   @ManyToOne(() => User)
   owner!: User;
 
   @ManyToMany(() => User, user => user.wishedBooks, { owner: true })
-  wishedBy = new Collection<User>(this);
+  wishedBy? = new Collection<User>(this);
 }
+
+
+

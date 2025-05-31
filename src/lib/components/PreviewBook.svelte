@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Book } from '$generated/prisma';
+	import {Book} from '@src/entities/Book.entity';
   import BookCard from './BookCard.svelte';
 
 	const { book } = $props<{

@@ -2,8 +2,8 @@
 <script lang="ts">
 	import Grid from '$lib/components/Grid.svelte';
 	import PreviewBook from '$lib/components/PreviewBook.svelte';
-  import { mapGoogleBookToPrismaBook } from '@src/services/bookService.js';
-	import type { GoogleBooksVolume } from '@src/types/googleBook.js';
+  import { mapGoogleBookToBook } from '@src/services/googleBook';
+	import type { GoogleBooksVolume } from '@src/types/googleBook';
 
   const { data } = $props();
   const { code, books } = data;
@@ -11,7 +11,7 @@
 </script>
 
 {#snippet Preview(book: GoogleBooksVolume)}
-    <PreviewBook book={mapGoogleBookToPrismaBook(book)} />
+    <PreviewBook book={mapGoogleBookToBook({nick: 'miguel', email: 'miguel@me.com', id: '1' }, book)} />
 {/snippet}
 
 <h2>Vista para ISBN: {code}</h2>

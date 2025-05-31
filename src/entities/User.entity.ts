@@ -15,17 +15,17 @@ export class User {
   email!: string;
 
   @OneToMany(() => Book, book => book.owner)
-  books = new Collection<Book>(this);
+  books? = new Collection<Book>(this);
 
   @ManyToMany(() => Book, book => book.wishedBy)
-  wishedBooks = new Collection<Book>(this);
+  wishedBooks? = new Collection<Book>(this);
 
   @ManyToMany(() => User, user => user.contacts)
-  contacts = new Collection<User>(this);
+  contacts? = new Collection<User>(this);
 
   @ManyToMany(() => Group, group => group.users)
-  groups = new Collection<Group>(this);
+  groups? = new Collection<Group>(this);
 
   @OneToMany(() => Group, group => group.admin)
-  groupsAdministred = new Collection<Group>(this);
+  groupsAdministred? = new Collection<Group>(this);
 }
