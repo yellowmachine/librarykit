@@ -1,17 +1,50 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Filter, Entity, PrimaryKey, Property, ManyToOne, ManyToMany, Collection } from '@mikro-orm/core';
+import { User } from './User.entity';
 
+@Filter({
+  name: 'groupContactsBooks',
+  cond: args => ({
+    $or: [
+      {
+        owner: {
+          groups: { users: { id: args.currentUserId } }
+        }
+      },
+      {
+        owner: {
+          contacts: { id: args.currentUserId }
+        }
+      }
+    ]
+  }),
+  args: false
+})
 @Entity()
 export class Book {
-  @PrimaryKey()
-  id!: number;
+  @PrimaryKey({ type: 'uuid' })
+  id!: string;
 
   @Property()
   title!: string;
 
   @Property()
-  author!: string;
+  authors!: string[];
+
+  @Property({type: 'text'})
+  description?: string;
 
   @Property()
-  price!: number;
-}
+  coverUrl: string | null = null;
+  
+  @Property()
+  publisher: string | null = null;
+  
+  @Property()
+  published: Date | null = null;
 
+  @ManyToOne(() => User)
+  owner!: User;
+
+  @ManyToMany(() => User, user => user.wishedBooks, { owner: true })
+  wishedBy = new Collection<User>(this);
+}

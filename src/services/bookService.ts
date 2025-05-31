@@ -1,5 +1,5 @@
 import type { GoogleBooksVolume } from '@src/types/googleBook';
-import type { Book } from '$generated/prisma';
+import { Book } from '@src/entities/Book.entity';
 
 export function mapGoogleBookToPrismaBook(apiData: GoogleBooksVolume): Omit<Book, 'id'> {
   const v = apiData.volumeInfo;

@@ -33,8 +33,17 @@ export default defineConfig( ({ mode }) => {
 						name: 'server',
 						environment: 'node',
 						include: ['src/**/*.{test,spec}.{js,ts}'],
-						exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
+						exclude: ['src/**/*.svelte.{test,spec}.{js,ts}', 'src/entities/**/*.entity.spec.ts']
 					}
+				},
+				{
+          extends: './vite.config.ts',
+          test: {
+            name: 'entities-db',
+            environment: 'node',
+            include: ['src/entities/**/*.entity.spec.ts'],
+            //exclude: [...configDefaults.exclude] 
+          }
 				}
 			]
 		}
